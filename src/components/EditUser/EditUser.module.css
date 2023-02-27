@@ -1,0 +1,51 @@
+.padding{
+    padding-top: 5rem;
+    max-width: 80%;
+    display: flex;
+    justify-content: center;
+    margin-left:10%;
+}
+
+.header {
+    
+    color: rgb(255, 130, 0, 0.95);
+  }
+
+.label{
+    border-radius: 10px;
+    border-width: 10rem;
+    text-align: start;
+    color: white;
+}
+
+
+.card{
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    max-height: 80vh;
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.content {
+    padding: 1rem;
+    max-height: 70%;
+    overflow: auto;
+    width: 90%;
+    text-align: center;
+  }
+
+.actions{
+    text-align: center;
+}
+.footer{
+    padding-top: 1rem;
+}
+
+
+

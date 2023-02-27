@@ -1,0 +1,48 @@
+.login {
+  width: 80%;
+  max-width: 30rem;
+  margin: auto;
+  padding: 2rem;
+}
+.first__div{
+  width: 100% - 2rem;
+  height: 100vh ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.actions {
+  text-align: center;
+}
+
+.btn{
+  width:12rem;
+  text-align: center;
+  margin-top: 0.4rem;
+}
+
+@media only screen and (max-width: 300px) and (orientation: landscape){
+  .btn {
+    font-size: small;
+    width: 10rem;
+  }
+  
+}
+
+
+/* @media only screen and (max-width: 700px) and (orientation: landscape){
+  .login  {
+   height: 65%;
+
+   font-size: 0.8rem;
+  }
+  .btn {
+    font-size: 1rem;
+   
+  }
+
+  
+} */
+
+
