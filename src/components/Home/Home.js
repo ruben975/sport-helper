@@ -1,16 +1,32 @@
 import * as React from 'react';
 
 import {MdAddBox} from 'react-icons/md';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import NewMatchForm from '../NewMatchForm/NewMatchForm';
 import Card from '../UI/Card/Card';
-import Input from 'react-widgets/cjs/Input';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 
 
 const Home = () => {
+
+  const [databaseMatches, setDatabaseMatches] = useState([]);
+  useEffect(() => {
+    loadedMatches();
+  }, [])
+
+  const loadedMatches = async () => {
+
+    const result = await axios({
+      method: 'get',
+      url: `http://localhost:8081/games`,
+    });
+
+    setDatabaseMatches(result.data);
+  }
+
   const [newMatch, setNewMatch] = useState(false);
   let navigate = useNavigate();
 const addMatch = () => {

@@ -9,7 +9,7 @@ import style from './App.module.css';
 import login from './background.jpg';
 import home from './home.jpg';
 
-import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NewUserForm from './components/NewUserForm/NewUserForm';
 import EditUser from './components/EditUser/EditUser';
 import Trainer from './components/Trainer/Tranier';

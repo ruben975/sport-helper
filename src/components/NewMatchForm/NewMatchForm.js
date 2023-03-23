@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
 import styles from "./NewMatchForm.module.css";
@@ -10,9 +10,10 @@ import axios from "axios";
 const NewMatchForm = (props) => {
 
    let navigate = useNavigate();
+   const adminName = localStorage.getItem('user_name');
 
   const [match, setMatch] = useState({
-    admin: '',
+    admin: adminName,
     description: '',
     location: '',
     sport_name: '',
@@ -25,34 +26,12 @@ const NewMatchForm = (props) => {
     setMatch({ ...match, [event.target.name]: event.target.value });
   }
 
-  const [databaseMatches, setDatabaseMatches] = useState([]);
-  useEffect(() => {
-    loadedMatches();
-  }, [])
-
-  const loadedMatches = async () => {
-
-    const result = await axios({
-      method: 'get',
-      url: `http://localhost:8081/games`,
-    });
-
-    setDatabaseMatches(result.data);
-  }
+ 
 
 
   const onSubmit = async (event) => {
     event.preventDefault();
    
-    //  await axios({
-    //   method: 'post',
-    //   url: 'http://localhost:8081/addGame',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   data: match
-    // });
-
     await axios.post("http://localhost:8081/addGame",match)
     navigate("/");
   }

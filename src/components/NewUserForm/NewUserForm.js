@@ -117,7 +117,6 @@ const NewUserForm = (props) => {
               <h2>Înregistrare</h2>
             </header>
             <div className={styles.content}>
-
               <Input type='text' placeholder='Nume' label='Nume' name='first_name' value={user.first_name} onChange={inputHandler} />
               <Input type='text' placeholder='Prenume' label='Prenume' name='last_name' value={user.last_name} onChange={inputHandler} />
               <Input type='text' placeholder='Username' label='Username' name='user_name' value={user.user_name} onChange={inputHandler} />
@@ -128,8 +127,7 @@ const NewUserForm = (props) => {
               <Input type='text' placeholder='Numar telefon' label='Numar telefon' name='phone_number' value={user.phone_number} onChange={inputHandler} />
               <Input type='password' placeholder='Parola' label='Parola' name='password' value={user.password} onChange={inputHandler} />
               <Input type='password' placeholder='Confirmarea parolei' label='Confirmare parola' name='checkPassword' value={user.checkPassword} onChange={inputHandler} />
-              <Input type='file' label='Upload Image' name='imageUpload' onChange={imageInputHandler} />
-
+              <Input type='file' label='Upload Image (MAX 1 MB)' name='imageUpload' onChange={imageInputHandler} />
             </div>
 
             <footer className={styles.actions}>
