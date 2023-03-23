@@ -1,0 +1,40 @@
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+   
+}
+.adminSection{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1.2rem;
+
+}
+
+.image{
+    display: flex;
+    justify-content: center;
+}
+.card {
+    border-radius: 10px;
+    background: rgba(255,130,19);
+    backdrop-filter: saturate(180%) blur(20px);
+    box-shadow: 25px 23px 50px rgb(0, 0, 0, 0.7);
+    margin: 0px 10px 20px 10px;
+}
+.card__thumb {
+    width: 50px;
+    height: 50px;      
+    border-radius: 50%;      
+  }
+@media screen and (max-width: 480px) {
+    .card {
+     
+       width: 250px;
+       }
+  }
+@media screen and (min-width: 480px) {
+    .card {
+       width: 350px;
+       }
+  }
