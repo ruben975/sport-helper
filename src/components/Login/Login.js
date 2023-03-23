@@ -13,11 +13,7 @@ import NewUserForm from '../NewUserForm/NewUserForm';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import ErrorModal from '../ErrorModal/ErrorModal';
-import UserContext from '../../Context/users-context';
 
-
-
-  
 
 const Login = () => {
   const [users, setUsers] = useState([]);
@@ -26,7 +22,6 @@ const Login = () => {
   const [addNewUserValidation, setAddNewUser] = new useState(false);
   const [inputValidation, setInputValidation] = new useState({ validation: true, error: '', content: '' });
 
-  const ctx = useContext(UserContext);
   useEffect(() => {
     loadedUsers();
   }, [])

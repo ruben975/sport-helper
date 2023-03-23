@@ -6,7 +6,6 @@ import UserContext from '../../Context/users-context';
 
 const User = (props) => {
 
-
   const ctx = useContext(UserContext);
   let users = ctx.users;
   users = users.filter(user => user.user_name !== localStorage.getItem('user_name'));

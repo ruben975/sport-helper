@@ -13,6 +13,7 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom
 import NewUserForm from './components/NewUserForm/NewUserForm';
 import EditUser from './components/EditUser/EditUser';
 import Trainer from './components/Trainer/Tranier';
+import NewMatchForm from './components/NewMatchForm/NewMatchForm';
 
 function App() {
   const ctx = useContext(AuthContext);
@@ -26,15 +27,14 @@ function App() {
       <MainHeader />
         <Routes> 
           <Route exapt path='/teamMembers' element = {<User />} /> 
-          <Route exact path='/' element =  {!ctx.isLoggedIn && <Login />} />
-          <Route exact path='/' element =   {ctx.isLoggedIn && <Home />} />
+          <Route exact path='/' element =  {!ctx.isLoggedIn ? <Login /> : <Home />} />   
           <Route exact path='/trainer' element = {<Trainer />} />
           <Route exact path="/addUser" element = {<NewUserForm />} />
+          <Route exact path="/addGame" element = {<NewMatchForm />} />
           <Route exact path="/editUser/:id" element = {<EditUser />} />
           {/* <Route path='*' element={<Navigate to='/pageNotFound'  />}></Route> */}
         </Routes>
         </main>
-      
 
         </Router>
       

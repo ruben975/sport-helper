@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import AuthContext from '../../Context/auth-context';
 import classes from './Navigation.module.css';

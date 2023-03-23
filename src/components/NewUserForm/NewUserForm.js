@@ -88,7 +88,7 @@ const NewUserForm = (props) => {
       formData.append('file', file);
 
       formData.append('user', JSON.stringify(user));
-      console.log(JSON.stringify(user))
+      
       await axios({
         method: 'post',
         url: 'http://localhost:8081/addUser',
