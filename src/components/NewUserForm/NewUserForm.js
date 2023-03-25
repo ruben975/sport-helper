@@ -6,7 +6,7 @@ import Input from '../UI/Input/Input';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ErrorModal from "../ErrorModal/ErrorModal";
-
+import Select from "react-select";
 
 const NewUserForm = (props) => {
 
@@ -54,7 +54,11 @@ const NewUserForm = (props) => {
 
   const inputHandler = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
+  }
 
+  const selectHandler = (selectedOption) => {
+    setSelectedOption(selectedOption);
+    setUser({ ...user, main_sport : selectedOption.value });
   }
 
   const imageInputHandler = (event) => {
@@ -106,6 +110,17 @@ const NewUserForm = (props) => {
     setInputValidation({ ...validationInput, isValid: true });
   }
 
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const sports = [
+    {value: 'Handbal', label: 'Handbal'},
+    {value: 'Fotbal', label: 'Fotbal'},
+    {value: 'Tenis', label: 'Tenis'},
+    {value: 'Alergare', label: 'Alergare'},
+    {value: 'Volei', label: 'Volei'},
+    {value: 'Pingpong', label: 'Pingpong'}
+  ]
+
   return (
     <div>
       <Link to='/'>
@@ -120,7 +135,9 @@ const NewUserForm = (props) => {
               <Input type='text' placeholder='Nume' label='Nume' name='first_name' value={user.first_name} onChange={inputHandler} />
               <Input type='text' placeholder='Prenume' label='Prenume' name='last_name' value={user.last_name} onChange={inputHandler} />
               <Input type='text' placeholder='Username' label='Username' name='user_name' value={user.user_name} onChange={inputHandler} />
-              <Input type='text' placeholder='Sport preferat' label='Sport preferat' name='main_sport' value={user.main_sport} onChange={inputHandler} />
+              <label htmlFor="my-select" style={{color:'white', fontWeight: 'bold' }}>Sport preferat:</label>
+              <Select value={selectedOption} onChange={selectHandler} options = {sports} menuPlacement="bottom"
+         maxMenuHeight={100} />
               <Input type='text' placeholder='Scurt descriere' label='Scurt descriere' name='introduction' value={user.introduction} onChange={inputHandler} />
               <Input type='number' placeholder='Varsta' label='Varsta' name='age' value={user.age} onChange={inputHandler} />
               <Input type='email' placeholder='E-mail' label='E-mail' name='email' value={user.email} onChange={inputHandler} />
@@ -134,7 +151,6 @@ const NewUserForm = (props) => {
               <Button type='submit' onClick={props.onConfirm}>Send</Button>
             </footer>
           </Card>}
-
       </form>
     </div>
   );

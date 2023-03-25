@@ -20,6 +20,8 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.2",
+    "react-stack-grid": "^0.7.1",
     "react-widgets": "^5.8.4",
     "sass": "^1.56.1",
     "styled-components": "^5.3.9",
