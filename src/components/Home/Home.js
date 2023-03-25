@@ -4,11 +4,11 @@ import {MdAddBox} from 'react-icons/md';
 import { useState, useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import NewMatchForm from '../NewMatchForm/NewMatchForm';
-import Card from '../UI/Card/Card';
 import { Link , useNavigate } from 'react-router-dom';
 import axios from "axios";
 import MatchCard from '../MatchCard/MatchCard';
 import styled from './Home.module.css'
+import StackGrid from "react-stack-grid";
 
 
 const Home = () => {
@@ -43,26 +43,25 @@ const setNoNewMatch = () => {
   setNewMatch(false);
 }
  return (
-   <div className='app' style={{paddingTop : '5rem', justifyContent : 'center', display:"flex"}}>
-    <Card className={styled.bigCard}>
+   <div className='app' style={{paddingTop : '5rem'}}>
+   
       <div style={{ display: 'flex', justifyContent : 'center'}}>
-   <Link to="/addGame" ><MdAddBox size = '3rem' color='rgba(255,130,19)' onClick={addMatch}
+   <Link to="/addGame" ><MdAddBox size = '3rem' color='green' onClick={addMatch}
     style={{cursor: 'pointer'}} onConfirm={addedMatch}></MdAddBox></Link> 
         </div>
-    <div className={styled.cardContent}>
-      <div> 
-    </div>
+   
+   <StackGrid columnWidth={350}>
     {databaseMatches.map((match) => (
-      <li key={match.id}>
+      <li style={{listStyleType : 'none'}} key={match.id}>
         <MatchCard title={match.sport_name} admin={match.admin} 
         players={match.players} maxPlayers={match.max_players} description={match.description} 
         location={match.location} date={match.date}/>
       </li>
     )
     )}
-    </div>
+    </StackGrid>
+  
     
-    </Card>
     
     {newMatch && <NewMatchForm onConfirm={setNoNewMatch}></NewMatchForm> }
    </div>
