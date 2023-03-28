@@ -49,8 +49,48 @@ const setNoNewMatch = () => {
   setNewMatch(false);
 }
 
-const acceptInvitation = () =>{
+async function getGameById(id) {
+  const result = await axios.get(`http://localhost:8081/game/${id}`);
   
+  return result.data;
+}
+
+const acceptInvitation = async (id) =>{
+  const gameData = await getGameById(id);
+
+  console.log(gameData);
+const newInvitedList = await gameData.invited_players.replace(new RegExp(localStorage.getItem('user_name') + ',\\s*', 'g'), "");
+  const game = {
+    admin: await gameData.admin,
+    description: await gameData.description,
+    location: await gameData.location,
+    players: await gameData.players+','+ localStorage.getItem('user_name'),
+    max_players: await gameData.max_players,
+    sport_name: await gameData.sport_name,
+    date: await gameData.date,
+    invited_players: newInvitedList
+  }
+  await axios.put(`http://localhost:8081/updateGame/${id}`, game);
+  loadedMatches();
+}
+
+const rejectInvitation = async (id) =>{
+  const gameData = await getGameById(id);
+
+  console.log(gameData);
+const newInvitedList = await gameData.invited_players.replace(new RegExp(localStorage.getItem('user_name') + ',\\s*', 'g'), "");
+  const game = {
+    admin: await gameData.admin,
+    description: await gameData.description,
+    location: await gameData.location,
+    players: await gameData.players,
+    max_players: await gameData.max_players,
+    sport_name: await gameData.sport_name,
+    date: await gameData.date,
+    invited_players: newInvitedList
+  }
+  await axios.put(`http://localhost:8081/updateGame/${id}`, game);
+  loadedMatches();
 }
 
  return (
@@ -67,7 +107,8 @@ const acceptInvitation = () =>{
         <MatchCard title={match.sport_name} admin={match.admin} 
         players={match.players} maxPlayers={match.max_players} description={match.description} 
         location={match.location} date={match.date} deleteGame={() => deleteGame(match.id)} 
-        invited={match.invited_players} acceptInvitation={acceptInvitation}/>
+        invited={match.invited_players} acceptInvitation={() => acceptInvitation(match.id)}
+        rejectInvitation={() => rejectInvitation(match.id)} />
         
       </li>
     )

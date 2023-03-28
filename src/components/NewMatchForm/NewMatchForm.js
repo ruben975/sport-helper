@@ -64,10 +64,10 @@ const NewMatchForm = (props) => {
  
   const handleSelectChange = (selectedOption) => {
     setSelectedOption(selectedOption);
-    const invitedPlayers = selectedOption ? selectedOption.map(item => item.value).join(', ') : '';
+    const invitedPlayers = selectedOption ? selectedOption.map(item => item.value).join(',') : '';
     setMatch(prevMatch => ({
       ...prevMatch,
-      invited_players: invitedPlayers,
+      invited_players: invitedPlayers+',',
     }));
   }
   const handleSelectChangeForSport = (selectedOptionSport) => {
