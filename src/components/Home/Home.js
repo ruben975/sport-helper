@@ -4,14 +4,15 @@ import {MdAddBox} from 'react-icons/md';
 import { useState, useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import NewMatchForm from '../NewMatchForm/NewMatchForm';
-import { Link , useNavigate } from 'react-router-dom';
+import { Link , useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import MatchCard from '../MatchCard/MatchCard';
-import styled from './Home.module.css'
 import StackGrid from "react-stack-grid";
 
 
 const Home = () => {
+
+  const {id} = useParams();
 
   const [databaseMatches, setDatabaseMatches] = useState([]);
   useEffect(() => {
@@ -28,6 +29,11 @@ const Home = () => {
     setDatabaseMatches(result.data);
   }
 
+  const deleteGame = async (id) => {
+    await axios.delete(`http://localhost:8081/deleteGame/${id}`);
+    loadedMatches();
+  }
+
   const [newMatch, setNewMatch] = useState(false);
   let navigate = useNavigate();
 const addMatch = () => {
@@ -42,6 +48,11 @@ const addedMatch = () => {
 const setNoNewMatch = () => {
   setNewMatch(false);
 }
+
+const acceptInvitation = () =>{
+  
+}
+
  return (
    <div className='app' style={{paddingTop : '5rem'}}>
    
@@ -55,13 +66,14 @@ const setNoNewMatch = () => {
       <li style={{listStyleType : 'none'}} key={match.id}>
         <MatchCard title={match.sport_name} admin={match.admin} 
         players={match.players} maxPlayers={match.max_players} description={match.description} 
-        location={match.location} date={match.date}/>
+        location={match.location} date={match.date} deleteGame={() => deleteGame(match.id)} 
+        invited={match.invited_players} acceptInvitation={acceptInvitation}/>
+        
       </li>
     )
     )}
     </StackGrid>
   
-    
     
     {newMatch && <NewMatchForm onConfirm={setNoNewMatch}></NewMatchForm> }
    </div>

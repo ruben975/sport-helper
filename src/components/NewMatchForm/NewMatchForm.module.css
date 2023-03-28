@@ -73,3 +73,7 @@
       width: 40rem;
     }
   }
+  .dateTimePicker {
+    background-color: white;
+    color: black;
+  }
