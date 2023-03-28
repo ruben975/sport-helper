@@ -86,14 +86,6 @@ const EditUser = () => {
         let formData = new FormData();
         formData.append('file', file);
         formData.append('user', JSON.stringify(user));
-        // await axios({
-        //   method: 'post',
-        //   url: 'http://localhost:8081/addUser',
-        //   data: formData,
-        //   headers: {
-        //     'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-        //   },
-        // });
         navigate("/");
       }
     }
