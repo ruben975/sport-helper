@@ -1,20 +1,5 @@
 
-  .bigCard{
-    width: 80vw;
-}
-.cardContent{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-@media screen and (max-width: 480px) {
-  .size{
-    width: 250px;
-  }
-}
-@media screen and (min-width: 480px) {
-  .size{
-    width: 350px;
-  }
+.container{
+  overflow: auto;
+  height: 91vh;
 }

@@ -8,6 +8,7 @@ import { Link , useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import MatchCard from '../MatchCard/MatchCard';
 import StackGrid from "react-stack-grid";
+import style from "./Home.module.css";
 
 
 const Home = () => {
@@ -94,27 +95,27 @@ const newInvitedList = await gameData.invited_players.replace(new RegExp(localSt
 }
 
  return (
-   <div className='app' style={{paddingTop : '5rem'}}>
-   
+   <div className='app' style={{paddingTop : '4rem'}}>
+   <div className={style.container}>
       <div style={{ display: 'flex', justifyContent : 'center'}}>
    <Link to="/addGame" ><MdAddBox size = '3rem' color='green' onClick={addMatch}
     style={{cursor: 'pointer'}} onConfirm={addedMatch}></MdAddBox></Link> 
         </div>
    
-   <StackGrid columnWidth={350}>
+   <StackGrid columnWidth={340} gutterWidth={10} >
     {databaseMatches.map((match) => (
-      <li style={{listStyleType : 'none'}} key={match.id}>
+      <div  key={match.id}>
         <MatchCard title={match.sport_name} admin={match.admin} 
         players={match.players} maxPlayers={match.max_players} description={match.description} 
         location={match.location} date={match.date} deleteGame={() => deleteGame(match.id)} 
         invited={match.invited_players} acceptInvitation={() => acceptInvitation(match.id)}
         rejectInvitation={() => rejectInvitation(match.id)} />
         
-      </li>
+      </div>
     )
     )}
     </StackGrid>
-  
+    </div>
     
     {newMatch && <NewMatchForm onConfirm={setNoNewMatch}></NewMatchForm> }
    </div>

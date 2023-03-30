@@ -26,7 +26,9 @@ const User = (props) => {
                 <span className={styles.card__status} >{user.main_sport}</span>
               </div>
             </div>
-            <p className={styles.card__description} >{user.introduction}</p>
+            <p className={styles.card__description} >{user.introduction}
+            Numarul meu de telefon este:
+            {user.phone_number} </p>
           </div>
         </div>      
       </li>

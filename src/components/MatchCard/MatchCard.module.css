@@ -1,40 +1,83 @@
-
-.title {
-    text-align: center;
-    font-size: 2rem;
-   
-}
-.adminSection{
-    display: flex;
-    justify-content: flex-start;
-    font-size: 1.2rem;
-
-}
-
-.image{
-    display: flex;
-    justify-content: center;
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .card {
-    border-radius: 10px;
-    background: rgba(255,130,19);
-    backdrop-filter: saturate(180%) blur(20px);
-    box-shadow: 10px 10px 50px rgb(0, 0, 0, 0.7);
-    margin: 0px 10px 0px 10px;
+  width: 310px;
+  height: 430px;
+  margin: 0 auto;
+  border-radius: 10px;
+ 
+  overflow: hidden;
 }
-.card__thumb {
-    width: 50px;
-    height: 50px;      
-    border-radius: 50%;      
+.card .card__content {
+    width: 300px; /* adjust as needed */
+    height: 80%;
+    margin: 0 auto; /* center horizontally */
+    text-align: center;
+    border-radius: 25px;
+    color: #fff;
+    padding: 5em 2.5em;
+    backdrop-filter: blur(10px);
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.5);
   }
-@media screen and (max-width: 250px) {
-    .card {
-     
-       width: 250px;
-       }
-  }
-@media screen and (min-width: 480px) {
-    .card {
-       width: 350px;
-       }
-  }
+ .card .card__top {
+  height: 60px;
+  position: relative;
+  opacity: 0;
+  backdrop-filter: none;
+}
+.card .card__content .profile__photo {
+  width: 130px;
+  height: 130px;
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translatex(-50%);
+}
+.card .card__content .profile__photo img {
+  width: 100%;
+  border-radius: 50%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card .card__content h2 {
+  font-weight: 700;
+  font-size: 24px;
+}
+.card .card__content h3 {
+  font-weight: 400;
+  margin: 5px 0 30px;
+  font-size: 16px;
+}
+.card .card__content p {
+  text-align: left;
+}
+.card .card__content p span {
+  margin-right: 10px;
+}
+.card .card__content p a {
+  text-decoration: none;
+  color: #fff;
+}
+.card .card__content p a:hover {
+  text-decoration: underline;
+}
+.card .card__content p + p {
+  margin-top: 10px;
+}
+.card a.button {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 9px 30px 10px 30px;
+  display: inline-block;
+  margin-top: 2em;
+}
+.card a.button:hover {
+  background: rgba(0, 0, 0, 0.7);
+}

@@ -24,6 +24,7 @@ const NewUserForm = (props) => {
     phone_number: '',
     password: '',
     checkPassword: '',
+    location: '',
 
   });
 
@@ -138,13 +139,14 @@ const NewUserForm = (props) => {
               <label htmlFor="my-select" style={{color:'white', fontWeight: 'bold' }}>Sport preferat:</label>
               <Select value={selectedOption} onChange={selectHandler} options = {sports} menuPlacement="bottom"
          maxMenuHeight={100} />
+              <Input type='text' placeholder='Locuința' label='Locuința' name='location' value={user.location} onChange={inputHandler} />
               <Input type='text' placeholder='Scurt descriere' label='Scurt descriere' name='introduction' value={user.introduction} onChange={inputHandler} />
               <Input type='number' placeholder='Varsta' label='Varsta' name='age' value={user.age} onChange={inputHandler} />
               <Input type='email' placeholder='E-mail' label='E-mail' name='email' value={user.email} onChange={inputHandler} />
               <Input type='text' placeholder='Numar telefon' label='Numar telefon' name='phone_number' value={user.phone_number} onChange={inputHandler} />
               <Input type='password' placeholder='Parola' label='Parola' name='password' value={user.password} onChange={inputHandler} />
               <Input type='password' placeholder='Confirmarea parolei' label='Confirmare parola' name='checkPassword' value={user.checkPassword} onChange={inputHandler} />
-              <Input type='file' label='Upload Image (MAX 1 MB)' name='imageUpload' onChange={imageInputHandler} />
+              <Input type='file' label='Încărcare imagine' name='imageUpload' onChange={imageInputHandler} />
             </div>
 
             <footer className={styles.actions}>
