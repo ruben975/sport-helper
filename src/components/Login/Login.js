@@ -116,7 +116,7 @@ const Login = () => {
               <Button className={classes.btn} type="submit" >
                 Autentificare
               </Button>
-              <p style={{ color: 'white', textAlign: 'center' }} >Pentru înregistrare dați click <Link to='/addUser' style={{ color: 'rgb(255, 130, 0)', cursor: 'pointer' }} onClick={addNewUser}>aici</Link> </p>
+              <p style={{ color: 'white', textAlign: 'center', paddingTop:'1em' }} >Pentru înregistrare dați click <Link to='/addUser' style={{ color: 'rgb(255, 130, 0)', cursor: 'pointer' }} onClick={addNewUser}>aici</Link> </p>
             </div>
           </div>
         </form>

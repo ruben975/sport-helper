@@ -58,8 +58,6 @@ async function getGameById(id) {
 
 const acceptInvitation = async (id) =>{
   const gameData = await getGameById(id);
-
-  console.log(gameData);
 const newInvitedList = await gameData.invited_players.replace(new RegExp(localStorage.getItem('user_name') + ',\\s*', 'g'), "");
   const game = {
     admin: await gameData.admin,
