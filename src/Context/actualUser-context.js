@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const UserContext = React.createContext({
   actualUser: {},
-  likePlayer: () => { }
+  likePlayer: () => { },
+  getActualUser: () => { }
 });
-
 
 export const UserContextProvider = (props) => {
 
@@ -33,8 +33,10 @@ export const UserContextProvider = (props) => {
   }
 
   const likePlayer = async (player) => {
-    const newLikedPlayers = user.liked_players+ player +',';
-    const newUserData = {...user, liked_players: newLikedPlayers};
+    let newLikedPlayer = '';
+    if(user.liked_players.includes(player)) newLikedPlayer = user.liked_players.replace(player+",","");
+    else { newLikedPlayer = user.liked_players+ player +',';}
+    const newUserData = {...user, liked_players: newLikedPlayer};
     setUser(newUserData);
     await axios.put(`http://localhost:8081/editUser/${localStorage.getItem("id")}`, newUserData);
   }
@@ -44,6 +46,7 @@ export const UserContextProvider = (props) => {
       value={{
         actualUser: user,
         likePlayer: likePlayer,
+        getActualUser: actualUser,
       }} 
     >
       {props.children}

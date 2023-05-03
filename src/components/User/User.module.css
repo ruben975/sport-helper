@@ -2,6 +2,20 @@
     --surface-color: #fff;
     --curve: 40;
   }
+  .filter{
+    margin: 4rem;    
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+  }
+
+.filter p{
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
 
   .circle{
     height: fit-content;
@@ -33,7 +47,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    margin: 4rem 5vw;
+    margin: 0rem 5vw 2rem;
     padding: 0;
     list-style-type: none;
   }
