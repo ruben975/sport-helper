@@ -1,4 +1,4 @@
-.main-header {
+/* .main-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,4 +14,98 @@
 
 .main-header h1 {
   color: black;
+} */ 
+.Header {
+  position: fixed;
+  top: 0; /* Stick it to the top */
+  height: 4.19rem;
+  width: 100vw;
+
+  display: grid;
+  grid-template-areas: "logo nav";
+
+  /* Cosmetics */
+  background-color: rgb(255, 130, 0, 0.95);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  z-index: 100000000000;
+}
+
+.Logo {
+  grid-area: logo;
+}
+
+.Nav {
+  display: grid;
+  grid-area: nav;
+  grid-template-columns: repeat(4, auto);
+  align-items: center;
+  justify-items: center;
+}
+.Nav a {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  transition: 0s;
+  text-decoration: none;
+}
+.Nav a:hover {
+  transform: scale(1.1);
+}
+
+.Nav button:active {
+  transform: translateY(3px);
+}
+
+.DropDown {
+  display: none;
+  grid-area: dropdown;
+  margin: 0 15px 0px 0;
+  padding: 5px 0px 0px 0px;
+  justify-self: end;
+  font-size: 40px;
+  border: none;
+  background: none;
+  outline: none;
+  transition: 0s;
+}
+.DropDown:active {
+  transform: scale(0.8);
+}
+
+@media (max-width: 700px) {
+  .Header {
+    grid-template-areas: "logo dropdown" "nav nav";
+  }
+  .Nav {
+    grid-template-rows: repeat(5, auto);
+    grid-template-columns: none;
+    grid-row-gap: 30px;
+
+    
+    background: rgb(255, 130, 0, 0.95);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .DropDown {
+    display: inline;
+    transition: 0s;
+  }
+}
+
+.NavAnimation-enter {
+  opacity: 0;
+  transform: scale(0.5);
+}
+.NavAnimation-enter-active {
+  opacity: 0;
+  transform: translateX(0);
+  transition: opacity 0ms, transform 0ms;
+}
+.NavAnimation-exit {
+  opacity: 1;
+}
+.NavAnimation-exit-active {
+  opacity: 0;
+  transition: opacity 0ms, transform 0ms;
 }

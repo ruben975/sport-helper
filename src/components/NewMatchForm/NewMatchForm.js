@@ -86,7 +86,7 @@ const NewMatchForm = (props) => {
         <form onSubmit={onSubmit} >
         <Card className={styles.modal} >
             <header className={styles.header}>
-              <h2>Adăugare match</h2>
+              <h2>Adăugare eveniment</h2>
             </header>
             <div className={styles.content}>
             <label htmlFor="my-select" style={{color:'white', fontWeight: 'bold' }}>Sport</label>

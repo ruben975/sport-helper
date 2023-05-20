@@ -28,7 +28,7 @@ const MatchCard = (props) => {
       </div>
       <div style={{display: 'flex', justifyContent: 'space-around', alignItems:'center', marginTop:'1.5em'}}>
     
-      <Button className>Detalii</Button>
+      <Button className>Participanți</Button>
       
      
       </div>

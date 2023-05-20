@@ -7,8 +7,8 @@
 }
 
 .header {
-    
     color: rgb(255, 130, 0, 0.95);
+    margin: 1.5rem 0rem 1rem;
   }
 
 .label{
@@ -23,18 +23,14 @@
     display: flex;
     flex-wrap: wrap;
     width: 90%;
-    max-height: 80vh;
-    justify-content: space-between;
+    height: fit-content;
     flex-direction: column;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
 }
 .content {
     padding: 1rem;
-    max-height: 70%;
+    max-height: 60vh;
     overflow: auto;
     width: 90%;
     text-align: center;
@@ -44,7 +40,11 @@
     text-align: center;
 }
 .footer{
-    padding-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content:  center;
+    flex-wrap: wrap;
+    margin:  1.5rem 0rem 1.5rem;
 }
 
 
