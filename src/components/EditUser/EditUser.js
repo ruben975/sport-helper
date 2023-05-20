@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../UI/Button/Button';
 import Card from '../UI/Card/Card';
 import Input from '../UI/Input/Input';
@@ -7,8 +7,6 @@ import styles from './EditUser.module.css'
 import axios from 'axios';
 import 'react-dropdown/style.css';
 import UserContext from '../../Context/actualUser-context';
-
-
 
 const EditUser = () => {
 
@@ -32,7 +30,7 @@ const EditUser = () => {
     phone_number: userContext.actualUser.phone_number,
     password: '',
     checkPassword: '',
-    liked_users: userContext.actualUser.liked_users
+    liked_players: userContext.actualUser.liked_users
 
   });
 

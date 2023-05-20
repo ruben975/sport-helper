@@ -4,3 +4,7 @@
   height: 91vh;
   padding-bottom: 2rem;
 }
+
+.error{
+  background-color: rgb(255, 130, 0, 0.95);
+}

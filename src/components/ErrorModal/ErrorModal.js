@@ -11,11 +11,11 @@ const ErrorModal = (props) => {
     <div>
       <div className={styles.backdrop} onClick={props.onConfirm} />
         <Card className={styles.modal} >
-          <header className={styles.header}>
+          <header className={`${styles.header} ${props.className}`}>
             <h2>{props.error}</h2>
           </header>
           <div className={styles.content}>
-            {props.content}
+            <div className={styles.item}>{props.content}</div>
           </div>
           <footer className={styles.actions}>
             <Button  type='button' onClick={props.onConfirm}>OK</Button>

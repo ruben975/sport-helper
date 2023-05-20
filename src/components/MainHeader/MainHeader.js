@@ -66,9 +66,10 @@ export default function Header() {
         )}
         </nav>
       </CSSTransition>
+      {ctx.isLoggedIn && (
       <button onClick={toggleNav} className={styles.DropDown}>
         <MdArrowDropDownCircle size={40} style={{padding : 0}}/>
-      </button>
+      </button> )}
     </header>
   );
 }
