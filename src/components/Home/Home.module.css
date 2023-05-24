@@ -8,3 +8,10 @@
 .error{
   background-color: rgb(255, 130, 0, 0.95);
 }
+
+.image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 15px;
+}

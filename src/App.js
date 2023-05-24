@@ -8,6 +8,7 @@ import User from './components/User/User';
 import style from './App.module.css';
 import login from './background.jpg';
 import home from './home.jpg';
+import EditMatch from './components/EditMatch/EditMatch'
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NewUserForm from './components/NewUserForm/NewUserForm';
@@ -26,11 +27,12 @@ function App() {
      
       <MainHeader />
         <Routes> 
-          <Route exapt path='/teamMembers' element = {<User />} /> 
+          <Route exact path='/teamMembers' element = {<User />} /> 
           <Route exact path='/' element =  {!ctx.isLoggedIn ? <Login /> : <Home />} />   
           <Route exact path='/trainer' element = {<Trainer />} />
           <Route exact path="/addUser" element = {<NewUserForm />} />
           <Route exact path="/addGame" element = {<NewMatchForm />} />
+          <Route exact path="/updateGame/:id" element = {<EditMatch />} />
           <Route exact path="/editUser/:id" element = {<EditUser />} />
           {/* <Route path='*' element={<Navigate to='/pageNotFound'  />}></Route> */}
         </Routes>
