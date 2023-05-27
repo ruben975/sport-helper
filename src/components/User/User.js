@@ -4,6 +4,8 @@ import styles from '../User/User.module.css';
 import UsersContext from '../../Context/users-context';
 import UserContext from '../../Context/actualUser-context';
 import {HiOutlineHeart} from "react-icons/hi";
+import {GrMapLocation, GrChat, GrPhone, GrUser} from "react-icons/gr";
+import { MdAlternateEmail } from 'react-icons/md'
 import Card from '../UI/Card/Card';
 
 const User = (props) => {
@@ -60,9 +62,13 @@ const userFilter = () => {
                 <span className={styles.card__status} >{user.main_sport}</span>
               </div>
             </div>
-            <p className={styles.card__description} >{user.introduction+" "}
-            Numarul meu:
-            {user.phone_number} </p>
+            <div className={`${styles.card__description} ${styles.custom__scrollbar}`} >
+           <div className={styles.content__rows}> <GrMapLocation size={20}></GrMapLocation>{' '+user.location}</div>
+           <div className={styles.content__rows}> <GrUser size={20}></GrUser>{' '+user.age} {user.age > 20 && 'de'} ani</div>
+           <div className={styles.content__rows}><GrChat size={20} /> {' ' + user.introduction}</div> 
+            <div className={styles.content__rows}><GrPhone size={20} />{' ' + user.phone_number}</div>
+            <div className={styles.content__rows}><MdAlternateEmail size={20} color='black'/>{' ' + user.email}</div>
+            </div>
           </div>
         </div>      
       </li>

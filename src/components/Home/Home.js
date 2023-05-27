@@ -100,6 +100,17 @@ const Home = () => {
     loadedMatches();
   }
 
+  const removePlayer = async (id) => {
+    const gameData = await getGameById(id); 
+    const newPlayersList = await gameData.players.replace(new RegExp('(,\\s*)?' + localStorage.getItem('user_name') + '(,\\s*)?'), "");
+    const game = {
+      ...gameData,
+      players: newPlayersList
+    }
+    await axios.put(`http://localhost:8081/updateGame/${id}`, game);
+    loadedMatches();
+  }
+
 
   const displayParticipants = async (id) => {
     const gameData = await getGameById(id);
@@ -126,7 +137,7 @@ const Home = () => {
     <div className='app' style={{ paddingTop: '4rem' }}>
       <div className={style.container}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Link to={`/addGame`}><MdAddBox size='3rem' color='green' onClick={addMatch}
+          <Link to={`/addGame`}><MdAddBox title="Adaugă eveniment" size='3rem' color='white' onClick={addMatch}
             style={{ cursor: 'pointer' }} onConfirm={addedMatch}></MdAddBox></Link>
         </div>
 
@@ -146,7 +157,8 @@ const Home = () => {
                   players={match.players} maxPlayers={match.max_players} description={match.description}
                   location={match.location} date={match.date} deleteGame={() => deleteGame(match.id)}
                   invited={match.invited_players} acceptInvitation={() => acceptInvitation(match.id)}
-                  rejectInvitation={() => rejectInvitation(match.id)} participants={() => displayParticipants(match.id)} />
+                  rejectInvitation={() => rejectInvitation(match.id)} participants={() => displayParticipants(match.id)}
+                  removePlayer = {() => removePlayer(match.id)} />
               </div>
              
          

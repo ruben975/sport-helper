@@ -21,11 +21,13 @@ const EditMatch = (props) => {
   });
   const usersCtx = useContext(UsersContext);
   const [options, setOptions] = useState([]);
-  const [invitedPlayers,setInvitedPlayers] = useState('semmi');
+  const [deleteOptions, setDeleteOptions] = useState([]);
+  const [invitedPlayers,setInvitedPlayers] = useState('');
   const [selectedOption, setSelectedOption] = useState(null);
+  const [deleteSelectedOption, setDeleteSelectedOption] = useState(null);
   const users = usersCtx.users;
   const path = useLocation().pathname;
-  const [gameData,setGameData] = useState({invited_players : ''});
+  const [gameData,setGameData] = useState({invited_players : '', players : ''});
   useEffect(() => {
     const getGameById = async () => {
         const result = await axios.get(`http://localhost:8081/game/${path.split('/').pop()}`);
@@ -36,10 +38,10 @@ const EditMatch = (props) => {
   }, [invitedPlayers]);
   useEffect(() => {
     const formatOptions = (users) => {
-      if(gameData !== undefined) console.log(gameData.invited_players)
-     
+      
     return users.filter(user => user.user_name !== localStorage.getItem('user_name') &&
-    !gameData.invited_players.includes(user.user_name)).map((user) => {
+    !gameData.invited_players.includes(user.user_name) && 
+    !gameData.players.includes(user.user_name) ).map((user) => {
         return {
           value: user.user_name,
           label: user.user_name,
@@ -47,6 +49,17 @@ const EditMatch = (props) => {
       });
       
     };
+    const formatDeleteOptions = (users) => {
+      return users.filter(user => gameData.invited_players.includes(user.user_name))
+      .map((user) => {
+        return {
+          value: user.user_name,
+          label: user.user_name,
+        };
+      })
+      ;
+    }
+    setDeleteOptions(formatDeleteOptions(users));
     setOptions(formatOptions(users));
   }, [invitedPlayers]);
 
@@ -73,10 +86,25 @@ const EditMatch = (props) => {
 
   const handleSelectChange = (selectedOption) => {
     setSelectedOption(selectedOption);
-    const invitedPlayers = selectedOption ? selectedOption.map(item => item.value).join(',') : '';
+    const invitedPlayers = selectedOption ? selectedOption.map(item => item.value).join(',') : gameData.invited_players;
     setMatch(prevMatch => ({
       ...prevMatch,
       invited_players: prevMatch.invited_players+ invitedPlayers + ',',
+    }));
+  };
+  const deleteInvitationHandler = (deleteSelectedOption) => {
+    setDeleteSelectedOption(deleteSelectedOption);
+    const deletePlayers = deleteSelectedOption ? deleteSelectedOption.map(item => item.value).join(',') : gameData.invited_players;
+    const playersToDelete = deletePlayers.split(',');
+  
+    const newInvitedList = gameData.invited_players
+      .split(',')
+      .filter(player => !playersToDelete.includes(player))
+      .join(',');
+  
+    setMatch(prevMatch => ({
+      ...prevMatch,
+      invited_players: newInvitedList
     }));
   };
  
@@ -94,8 +122,11 @@ const EditMatch = (props) => {
                 <Input type='text' placeholder='Locația' label='Locația' name='location' value={match.location || ''} onChange={inputHandler} />
                 <Input type='text' placeholder='02/15/2023 20:00' label='Data și ora' name='date' value={match.date || ''} onChange={inputHandler} />
                 <label htmlFor="my-select" style={{color:'white', fontWeight: 'bold' }}>Participanți</label>
-                <Select options={options} isMulti onChange={handleSelectChange}
+                <Select style={{padding: '50px'}} options={options} isMulti onChange={handleSelectChange}
                   value={selectedOption || ''}  placeholder="Alege pentru cine trimiți invitație"   maxMenuHeight={100} />
+                <label htmlFor="my-select" style={{color:'white', fontWeight: 'bold', marginTop: '10px' }}>Șterge invitații</label>
+                <Select options={deleteOptions}  isMulti onChange={deleteInvitationHandler}
+                value={deleteSelectedOption || ''}  placeholder="Cine este persoana pe care nu vrei să o inviți?"   maxMenuHeight={100} />
                 <Input type='text' placeholder='Descriere' label='Descriere' name='description' value={match.description || ''} onChange={inputHandler} />
                 <Input type='number' placeholder='Număr maxim participanți' label='Număr maxim de participanți' name='max_players' 
                 value={match.max_players || ''} onChange={inputHandler} />

@@ -47,17 +47,17 @@ export default function Header() {
         <nav className={styles.Nav}>
         {ctx.isLoggedIn && (
           <a href=" ">
-           <Link onClick={toggleNav} to='/trainer'>Trainers</Link> 
+           <Link onClick={toggleNav} to='/trainer'>Antrenori</Link> 
           </a>
         )}
         {ctx.isLoggedIn && (
           <a onClick={toggleNav} href=" ">
-            <Link  to='/teamMembers'>Team Mates</Link> 
+            <Link  to='/teamMembers'>Utilizatori</Link> 
           </a>
         )}
             {ctx.isLoggedIn && (
           <a onClick={toggleNav} href=" ">
-          <Link to={`/editUser/${localStorage.getItem('id')}`}>Edit user
+          <Link to={`/editUser/${localStorage.getItem('id')}`}>Modifică contul
           </Link> 
           </a>
         )}
