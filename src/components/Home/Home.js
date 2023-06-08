@@ -11,18 +11,27 @@ import MatchCard from '../MatchCard/MatchCard';
 import StackGrid from "react-stack-grid";
 import style from "./Home.module.css";
 import ErrorModal from '../ErrorModal/ErrorModal';
+import Select from 'react-select';
 
 
 const Home = () => {
 
   const { id } = useParams();
 
+  const filter = [{ value: 'all', label: 'Toate' },
+  { value: 'invited_players', label: 'Invitat' },
+  { value: 'players', label: 'Participant' },
+  { value: 'admin', label: 'Proprii' }]
+
+  const [selectedOptionFilter, setSelectedOptionFilter] = useState(filter[0]);
+
   const [databaseMatches, setDatabaseMatches] = useState([]);
+  const [matches, setMatches] = useState([]);
   useEffect(() => {
     loadedMatches();
   }, [])
 
-  const [ editMatch, setEditMatch] = useState (false);
+  const [editMatch, setEditMatch] = useState(false);
 
   const [available, setAvaible] = useState(true);
 
@@ -34,6 +43,7 @@ const Home = () => {
     });
 
     setDatabaseMatches(result.data);
+    setMatches(result.data);
   }
 
   const deleteGame = async (id) => {
@@ -101,7 +111,7 @@ const Home = () => {
   }
 
   const removePlayer = async (id) => {
-    const gameData = await getGameById(id); 
+    const gameData = await getGameById(id);
     const newPlayersList = await gameData.players.replace(new RegExp('(,\\s*)?' + localStorage.getItem('user_name') + '(,\\s*)?'), "");
     const game = {
       ...gameData,
@@ -132,15 +142,25 @@ const Home = () => {
   const noPlacesError = () => {
     setAvaible(!available);
   }
+  const filterMatches = (selectedOptionFilter) => {
+    setSelectedOptionFilter(selectedOptionFilter);
+    console.log(selectedOptionFilter.value)
+    const fii = selectedOptionFilter.value
+    if (selectedOptionFilter.value === 'all') setMatches(databaseMatches);
+    else
+      setMatches(databaseMatches.filter(match => match[fii].includes(localStorage.getItem('user_name'))));
+  }
 
   return (
     <div className='app' style={{ paddingTop: '4rem' }}>
       <div className={style.container}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Link to={`/addGame`}><MdAddBox title="Adaugă eveniment" size='3rem' color='white' onClick={addMatch}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{width: '106px'}}><Select styles={{ menu: (provided) => ({ ...provided, zIndex: 9999 }) }}
+            options={filter} onChange={filterMatches} value={selectedOptionFilter}
+            placeholder={filter[0]} maxMenuHeight={200} /></div>
+          <Link style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} to={`/addGame`}><MdAddBox title="Adaugă eveniment" size='3rem' color='white' onClick={addMatch}
             style={{ cursor: 'pointer' }} onConfirm={addedMatch}></MdAddBox></Link>
         </div>
-
 
         {!available && <ErrorModal error="Locurile s-au ocupat"
           content="Nu mai sunt locuri libere, data viitoare să fii mai rapid(ă)"
@@ -149,27 +169,27 @@ const Home = () => {
           content={participants.content} onConfirm={noDisplayPatricipants} className={style.error}></ErrorModal>}
 
         <StackGrid columnWidth={340} gutterWidth={10} >
-          {databaseMatches.map((match) => (
-            
+          {matches.map((match) => (
 
-              <div key={match.id}>
-                <MatchCard title={match.sport_name} admin={match.admin} matchId={match.id}
-                  players={match.players} maxPlayers={match.max_players} description={match.description}
-                  location={match.location} date={match.date} deleteGame={() => deleteGame(match.id)}
-                  invited={match.invited_players} acceptInvitation={() => acceptInvitation(match.id)}
-                  rejectInvitation={() => rejectInvitation(match.id)} participants={() => displayParticipants(match.id)}
-                  removePlayer = {() => removePlayer(match.id)} />
-              </div>
-             
-         
+
+            <div key={match.id}>
+              <MatchCard title={match.sport_name} admin={match.admin} matchId={match.id}
+                players={match.players} maxPlayers={match.max_players} description={match.description}
+                location={match.location} date={match.date} deleteGame={() => deleteGame(match.id)}
+                invited={match.invited_players} acceptInvitation={() => acceptInvitation(match.id)}
+                rejectInvitation={() => rejectInvitation(match.id)} participants={() => displayParticipants(match.id)}
+                removePlayer={() => removePlayer(match.id)} />
+            </div>
+
+
           )
           )}
         </StackGrid>
       </div>
 
       {newMatch && <NewMatchForm onConfirm={setNoNewMatch}></NewMatchForm>}
-      {editMatch &&  <EditMatch /> }
-     
+      {editMatch && <EditMatch />}
+
     </div>
   );
 };
