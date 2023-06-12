@@ -3,19 +3,125 @@
   --curve: 40;
 }
 
+.button {
+  padding: 10px 30px;
+}
+.filter__dropdown:hover .filter__dropdownContent {
+  display: block;
+}
+
+.filter .button:hover,
+.button:active {
+  background: rgb(3, 3, 3);
+  border-color: rgb(255, 130, 0);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.26);
+  color: rgb(255, 130, 0);
+}
+.searchInput {
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(255, 130, 0);
+  padding: 5px 0px;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.searchInput::placeholder {
+  color: black;
+}
+
+.searchInput:focus {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.9);
+}
+
 .filter {
-  margin: 4rem;
+  margin: 4.5rem 0rem 2rem 0rem;
   height: 2rem;
   display: flex;
   justify-content: center;
   justify-items: center;
   align-items: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+.filter__card {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 650px) {
+  .filter__card {
+    flex-direction: column;
+  }
+
+  .filter__card>*:not(input) {
+    padding-top: 15px;
+  }
 }
 
 .filter p {
   color: white;
   font-weight: bold;
   cursor: pointer;
+  margin: 0px 15px 0px 5px
+}
+
+.filter__container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: fit-content;
+}
+
+
+.filter__dropdown p.active {
+  color: rgb(255, 130, 0);
+}
+
+.filter__dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.filter__dropdown p {
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0px 15px 0px 15px;
+  text-align: center;
+}
+
+.filter__dropdownContent {
+  display: none;
+  position: absolute;
+  left: -50px;
+  background-color: #000000;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 99999999999999;
+  border-radius: 20px;
+}
+
+label {
+  color: white;
+}
+
+.filter__dropdownContent input {
+  margin-bottom: 0.5rem;
+}
+
+.filter__dropdown:hover .filter__dropdownContent {
+  display: block;
+}
+
+.filter__dropdown p.active {
+  color: rgb(255, 130, 0);
 }
 
 .circle {
@@ -51,7 +157,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin: 0rem 5vw 2rem;
+  margin: 0rem 5vw 0rem;
   padding: 0;
   list-style-type: none;
 }
@@ -64,7 +170,9 @@
   overflow: hidden;
   text-decoration: none;
 }
-
+.clearFilters{
+  padding-top: 15px;
+}
 .card__image {
   width: 100%;
   height: 300px;
@@ -75,6 +183,7 @@
   height: 100%;
   overflow: auto;
   padding-top: 1rem;
+  padding-bottom: 2rem;
 }
 
 .card__overlay {
@@ -85,7 +194,7 @@
   right: 0;
   z-index: 1;
   border-radius: calc(var(--curve) * 1px);
-  background-color: var(--surface-color);
+  background-color: rgba(0, 0, 0, 0.9);
   transform: translateY(100%);
   transition: .2s ease-in-out;
 }
@@ -101,7 +210,7 @@
   gap: 2em;
   padding: 2em;
   border-radius: calc(var(--curve) * 1px) 0 0 0;
-  background-color: var(--surface-color);
+  background-color: rgb(255, 95, 9);
   transform: translateY(-100%);
   transition: .2s ease-in-out;
 }
@@ -110,14 +219,14 @@
   width: 80px;
   height: 80px;
   position: absolute;
-  bottom: 100%;
+  bottom: 99.6%;
   right: 0;
   z-index: 1;
 }
 
 .card__arc path {
-  fill: var(--surface-color);
-  d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+  fill: rgb(255, 95, 9);
+  d: path("M 40 80 c 22 0 40 -22 40 -40 v 50 Z");
 }
 
 .card:hover .card__header {
@@ -134,7 +243,7 @@
 .card__title {
   font-size: 1em;
   margin: 0 0 .3em;
-  color: #6A515E;
+  color: white;
 }
 
 .card__status {
@@ -145,7 +254,7 @@
 .card__description {
   padding: 0 2em 2em;
   margin: 0;
-  color: #D7BDCA;
+  color: #ffffff;
   height: 200px;
   display: flex;
   align-items: center;
@@ -161,6 +270,15 @@
   overflow: auto;
 
 }
+
+.search :hover {
+  cursor: pointer;
+}
+
+.search__icon {
+  border: #333;
+}
+
 .content__rows {
   width: 100%;
   padding-bottom: 10px;
@@ -174,4 +292,3 @@
   width: 2px;
   /* Adjust the width as per your preference */
 }
-

@@ -47,7 +47,7 @@ const MatchCard = (props) => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginTop: '1.5em' }}>
 
-            <Button onClick={props.participants}>Participanții</Button>
+            <Button onClick={props.participants}>Participanți</Button>
 
           </div>
         </div>

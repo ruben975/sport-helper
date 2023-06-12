@@ -155,7 +155,8 @@ const Home = () => {
     <div className='app' style={{ paddingTop: '4rem' }}>
       <div className={style.container}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{width: '106px'}}><Select styles={{ menu: (provided) => ({ ...provided, zIndex: 9999 }) }}
+          <div style={{width: '106px'}}>
+            <Select styles={{ menu: (provided) => ({ ...provided, zIndex: 9999 }) }}
             options={filter} onChange={filterMatches} value={selectedOptionFilter}
             placeholder={filter[0]} maxMenuHeight={200} /></div>
           <Link style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} to={`/addGame`}><MdAddBox title="Adaugă eveniment" size='3rem' color='white' onClick={addMatch}
@@ -165,7 +166,7 @@ const Home = () => {
         {!available && <ErrorModal error="Locurile s-au ocupat"
           content="Nu mai sunt locuri libere, data viitoare să fii mai rapid(ă)"
           onConfirm={noPlacesError} />}
-        {participants.validation && <ErrorModal error={"Participanții"}
+        {participants.validation && <ErrorModal error={"Participanți"}
           content={participants.content} onConfirm={noDisplayPatricipants} className={style.error}></ErrorModal>}
 
         <StackGrid columnWidth={340} gutterWidth={10} >

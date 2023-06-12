@@ -25,6 +25,7 @@ const NewUserForm = (props) => {
     password: '',
     checkPassword: '',
     location: '',
+    liked_players: ''
 
   });
 

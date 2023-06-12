@@ -18,7 +18,7 @@ import ErrorModal from '../ErrorModal/ErrorModal';
 const Login = () => {
   const [users, setUsers] = useState([]);
   const [emailState, setEmail] = new useState('nagy.ruben97@gmail.com');
-  const [passwordState, setPassword] = new useState('1-stPassword');
+  const [passwordState, setPassword] = new useState('nagyruben');
   const [addNewUserValidation, setAddNewUser] = new useState(false);
   const [inputValidation, setInputValidation] = new useState({ validation: true, error: '', content: '' });
 
