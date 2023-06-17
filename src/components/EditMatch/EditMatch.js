@@ -116,7 +116,7 @@ const EditMatch = (props) => {
         <form onSubmit={onSubmit} >
         <Card className={styles.modal} >
             <header className={styles.header}>
-              <h2>Adăugare eveniment</h2>
+              <h2>Setare eveniment</h2>
             </header>
             <div className={styles.content}>
                 <Input type='text' placeholder='Locația' label='Locația' name='location' value={match.location || ''} onChange={inputHandler} />
